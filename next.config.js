@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // ISTO É O QUE VAI CORRIGIR SEU BUILD
   output: 'export',
-  // Adiciona esta configuração para desativar a otimização de imagem no servidor,
-  // tornando-a compatível com o 'export'.
-  images: {
-    unoptimized: true,
-  },
+
+  // Se você usa a tag <Image> do Next.js, 
+  // você provavelmente vai precisar descomentar a linha abaixo:
+  // images: {
+  //   unoptimized: true,
+  // },
 };
 
 module.exports = nextConfig;
