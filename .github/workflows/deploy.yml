@@ -55,7 +55,7 @@ jobs:
           host: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          
+
           # 1. Pega o conteúdo da pasta 'out' (que está cheia)
           local_root: out/
           # 2. Envia para o diretório raiz (que é a public_html)
