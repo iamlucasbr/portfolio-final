@@ -25,6 +25,12 @@ jobs:
       - name: Build project
         run: npm run build
 
+      # --- NOVO PASSO DE DIAGNÓSTICO ---
+      # Este passo vai listar todos os arquivos no diretório
+      # para vermos se a pasta 'out' foi realmente criada.
+      - name: Listar arquivos após o build
+        run: ls -R
+
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -33,4 +39,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
           server-dir: ./public_html/
-          dangerous-clean-slate: true # <--- NOVO TESTE DEPLOY
+          dangerous-clean-slate: true
