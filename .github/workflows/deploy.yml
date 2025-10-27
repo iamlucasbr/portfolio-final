@@ -22,10 +22,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # --- A SOLUÇÃO CORRETA E SEM ERROS DE SINTAXE ---
-      # Vamos SOBRESCREVER o next.config.js no servidor de build
-      # com a configuração de 'output: export' que o deploy precisa.
-      # Isso não afeta seu arquivo local. O 'run: |' é 100% seguro.
+      # --- NOVO PASSO ---
+      # Vamos apagar a 'out' para ter certeza que o build a cria
+      - name: Limpar a pasta 'out' antiga
+        run: rm -rf out
+
       - name: Criar next.config.js para Produção
         run: |
           cat << EOT > next.config.js
