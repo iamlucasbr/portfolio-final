@@ -22,9 +22,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Limpar a pasta 'out' antiga
-        run: rm -rf out
-
+      
       - name: Criar next.config.js para Produção
         run: |
           cat << EOT > next.config.js
@@ -39,19 +37,22 @@ jobs:
           module.exports = nextConfig;
           EOT
 
+     
       - name: Build project
         run: npm run build
 
-      - name: Listar conteúdo da pasta 'out'
-        run: ls -R out
-
+     
       - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: SebastiaanKlippert/ftp-action@v2.1.0
         with:
+          # O 'server' (host) é o mesmo
           server: ${{ secrets.FTP_SERVER }}
+          
           username: ${{ secrets.FTP_USERNAME }}
+          
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
-          # --- CORREÇÃO DE SINTAXE E LÓGICA ---
-          server-dir: ./
-          dangerous-clean-slate: true
+          
+          
+          localPath: out
+          
+          serverPath: public_html
