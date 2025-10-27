@@ -22,7 +22,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      
+      - name: Limpar a pasta 'out' antiga
+        run: rm -rf out
+
       - name: Criar next.config.js para Produção
         run: |
           cat << EOT > next.config.js
@@ -37,22 +39,21 @@ jobs:
           module.exports = nextConfig;
           EOT
 
-     
       - name: Build project
         run: npm run build
 
-     
+      - name: Listar conteúdo da pasta 'out'
+        run: ls -R out
+
+      # --- MUDANÇA TOTAL DO DEPLOY ---
+      # Trocando a action que eu digitei errado por uma que existe
       - name: Deploy to FTP
-        uses: SebastiaanKlippert/ftp-action@v2.1.0
+        uses: wlixcc/lftp-action@v1.2.1
         with:
-          # O 'server' (host) é o mesmo
           server: ${{ secrets.FTP_SERVER }}
-          
           username: ${{ secrets.FTP_USERNAME }}
-          
           password: ${{ secrets.FTP_PASSWORD }}
-          
-          
-          localPath: out
-          
-          serverPath: public_html
+          # 1. Pega o conteúdo da pasta 'out'
+          localDir: 'out/'
+          # 2. Envia para a 'public_html'
+          remoteDir: 'public_html/'
