@@ -22,8 +22,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # --- NOVO PASSO ---
-      # Vamos apagar a 'out' para ter certeza que o build a cria
       - name: Limpar a pasta 'out' antiga
         run: rm -rf out
 
@@ -44,8 +42,10 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Listar arquivos (para ver se 'out' está cheio)
-        run: ls -R
+      # --- O DIAGNÓSTICO CORRETO E FINAL ---
+      # Vamos listar APENAS o conteúdo da pasta 'out'
+      - name: Listar conteúdo da pasta 'out'
+        run: ls -R out
 
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
