@@ -53,6 +53,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
           server-dir: public_html/
-          dangerous-clean-slate: true
-          # --- A MUDANÇA FINAL PARA O DIAGNÓSTICO ---
-          log-level: verbose
+          # --- O COMANDO PROBLEMÁTICO FOI REMOVIDO ---
