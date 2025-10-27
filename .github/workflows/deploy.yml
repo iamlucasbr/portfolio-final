@@ -51,7 +51,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          # --- MUDANÇA DE CAMINHO ---
-          local-dir: out
-          server-dir: public_html
+          # --- CORRIGINDO O ERRO DE SINTAXE ---
+          local-dir: ./out/
+          server-dir: public_html/
           dangerous-clean-slate: true
