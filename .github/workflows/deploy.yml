@@ -45,10 +45,10 @@ jobs:
       - name: Listar conteúdo da pasta 'out'
         run: ls -R out
 
-      # --- A MUDANÇA FINAL ---
-      # Trocando a action MENTIROSA pela action correta
+      # --- A MUDANÇA FINAL (DE VERDADE) ---
+      # Trocando a action MENTIROSA pela action correta (com a versão @v2)
       - name: Deploy to FTP
-        uses: SebastiaanKlippert/ftp-action@v2.1.0
+        uses: SebastiaanKlippert/ftp-action@v2
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
