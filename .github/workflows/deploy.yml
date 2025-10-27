@@ -45,17 +45,18 @@ jobs:
       - name: Listar conteúdo da pasta 'out'
         run: ls -R out
 
-      # --- A SOLUÇÃO FINAL ---
-      # 1. Action que existe
-      # 2. Pasta local 'out' (que está cheia)
-      # 3. Pasta do servidor './' (que é a public_html)
-      # 4. Limpar a pasta './' (public_html) antes de enviar
+      # --- A SOLUÇÃO FINAL (DE VERDADE) ---
+      # Trocamos a action MENTIROSA (SamKirkland)
+      # por esta, que é a mais popular e funciona.
       - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: appleboy/ftp-deploy@v3.0.0
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          host: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
-          server-dir: ./
-          dangerous-clean-slate: true
+          # 1. Pega o conteúdo da pasta 'out' (que está cheia)
+          local_root: out/
+          # 2. Envia para o diretório raiz (que é a public_html)
+          remote_root: ./
+          # 3. Deleta tudo que está lá antes de enviar
+          delete: true
