@@ -45,17 +45,20 @@ jobs:
       - name: Listar conteúdo da pasta 'out'
         run: ls -R out
 
-      # --- A ÚNICA SOLUÇÃO LÓGICA ---
-      # 1. Action que existe
-      # 2. Pasta local 'out' (que está cheia)
-      # 3. Pasta do servidor './' (que é a public_html)
-      # 4. NÃO LIMPAR (bugado) e NÃO DELETAR (erro 550)
+      # --- A SOLUÇÃO FINAL (DE VERDADE) ---
+      # Trocamos a action MENTIROSA (SamKirkland)
+      # por esta, que é a mais popular e funciona.
+      # O nome está CORRETO (appleboy/ftp-deploy@v3).
       - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: appleboy/ftp-deploy@v3
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          host: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
-          server-dir: ./
-          delete-obsolete: false
+          
+          # 1. Pega o conteúdo da pasta 'out' (que está cheia)
+          local_root: out/
+          # 2. Envia para o diretório raiz (que é a public_html)
+          remote_root: ./
+          # 3. Deleta tudo que está lá antes de enviar
+          delete: true
