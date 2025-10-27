@@ -22,9 +22,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Limpar a pasta 'out' antiga
-        run: rm -rf out
-
+      # O passo de criar o config está correto e fica
       - name: Criar next.config.js para Produção
         run: |
           cat << EOT > next.config.js
@@ -42,17 +40,28 @@ jobs:
       - name: Build project
         run: npm run build
 
+      # O passo de listar os arquivos está correto e fica
       - name: Listar conteúdo da pasta 'out'
         run: ls -R out
 
-      - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      # --- MUDANÇA TOTAL DO DEPLOY ---
+      # Trocamos a action 'SamKirkland' pela 'lftp-action'
+      - name: Deploy to FTP via LFTP
+        uses: wearerequired/lftp-action@v2
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
-          # --- A CORREÇÃO FINAL ESTÁ AQUI ---
-          # Envia para o diretório raiz (que é o public_html)
-          server-dir: ./
-          dangerous-clean-slate: true
+          # Define as variáveis de ambiente com seus secrets
+          env:
+            FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+            FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+            FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          
+          # O comando 'lftp' que vamos rodar
+          run: |
+            # Conecta ao servidor (sem SSL, que pode ser um problema)
+            lftp -c "set ftp:ssl-allow no; 
+            open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
+            
+            # Sincroniza a pasta 'out' com a raiz do servidor '.'
+            # -R (upload), -n (só novos), -e (deleta antigos), -v (verboso)
+            mirror -Rnev ./out ./
+            "
