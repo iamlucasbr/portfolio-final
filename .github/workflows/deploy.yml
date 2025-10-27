@@ -51,7 +51,8 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          # --- CORRIGINDO O ERRO DE SINTAXE ---
           local-dir: ./out/
           server-dir: public_html/
           dangerous-clean-slate: true
+          # --- A MUDANÇA FINAL PARA O DIAGNÓSTICO ---
+          log-level: verbose
