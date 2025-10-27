@@ -22,10 +22,23 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # --- CORREÇÃO FINAL DA SINTAXE ---
-      # Insere "output: 'export'," na linha 3 do next.config.js
-      - name: Adicionar 'output: export' ao next.config.js
-        run: sed -i "3i output: 'export'," next.config.js
+      # --- A SOLUÇÃO CORRETA E SEM ERROS DE SINTAXE ---
+      # Vamos SOBRESCREVER o next.config.js no servidor de build
+      # com a configuração de 'output: export' que o deploy precisa.
+      # Isso não afeta seu arquivo local. O 'run: |' é 100% seguro.
+      - name: Criar next.config.js para Produção
+        run: |
+          cat << EOT > next.config.js
+          /** @type {import('next').NextConfig} */
+          const nextConfig = {
+            output: 'export',
+            images: {
+              unoptimized: true,
+            },
+          };
+
+          module.exports = nextConfig;
+          EOT
 
       - name: Build project
         run: npm run build
