@@ -42,7 +42,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # Este passo provou que o build funciona
       - name: Listar conteúdo da pasta 'out'
         run: ls -R out
 
@@ -53,7 +52,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
-          # --- A CORREÇÃO FINAL ESTÁ AQUI ---
-          # Envia para o diretório raiz (onde o FTP conecta)
-          server-dir: ./
-          dangerous-clean-slate: true
+          # Voltamos ao 'public_html/' que o log anterior entendeu
+          server-dir: public_html/
+          # --- A MUDANÇA ESTÁ AQUI ---
+          # Removendo o clean-slate
