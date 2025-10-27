@@ -27,7 +27,7 @@ const About = () => {
             <h2 className="text-4xl font-bold text-white mb-6 text-left">Sobre Mim</h2>
             {/*Pegar meu resumo do Linkedin e adicionar */}
             <p className="text-lg text-gray-400 leading-relaxed mb-6">
-              Sou um desenvolvedor de software e meu objetivo é criar aplicações web de alta qualidade, focando em performance, escalabilidade e na experiência do usuário. Trabalho principalmente com ReactJS, NextJS, Node.js, PHP/Laravel e React Native, do front ao back, entregando projetos que fazem sentido tanto pra quem usa quanto pra quem mantém. 
+              Sou desenvolvedor de software e meu objetivo é criar aplicações web de alta qualidade, focando em performance, escalabilidade e na experiência do usuário. Trabalho principalmente com ReactJS, NextJS, Node.js, PHP/Laravel e React Native, do front ao back, entregando projetos que fazem sentido tanto pra quem usa quanto pra quem mantém. 
             </p>
             {/* Pegar meu resumo do Linkedin e adicionar */}
             <p className="text-lg text-gray-400 leading-relaxed">

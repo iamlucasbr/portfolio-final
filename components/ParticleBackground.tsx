@@ -46,10 +46,10 @@ const ParticleBackground = () => {
       }
 
       update() {
-        // ===== A CORREÇÃO ESTÁ AQUI =====
-        // Verificamos se o canvas existe ANTES de tentar acessar suas propriedades
+        // == CORRIGIR O BUG NAO ESQUECER!!
+        // Verificando se o canvas existe ANTES de tentar acessar as propriedades
         if (!canvas) return; 
-        // ================================
+        
 
         if (this.x > canvas.width || this.x < 0) {
           this.directionX = -this.directionX;
