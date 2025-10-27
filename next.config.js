@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Isso é necessário para as Imagens do Next.js 
-  // funcionarem no site estático final.
+  // Esta linha é necessária para as Imagens do Next.js
+  // funcionarem no site estático final (no deploy).
+  // Não vai quebrar seu localhost.
   images: {
     unoptimized: true,
   },

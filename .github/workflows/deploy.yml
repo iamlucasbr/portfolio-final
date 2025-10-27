@@ -22,10 +22,16 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # --- A CORREÇÃO BRUTA ESTÁ AQUI ---
-      # Força o 'next build' E o 'next export' (que cria a pasta 'out')
-      - name: Build and Export project
-        run: npm run build && npx next export
+      # --- A SOLUÇÃO DEFINITIVA ESTÁ AQUI ---
+      # Modifica o next.config.js SÓ NO SERVIDOR DE BUILD
+      # Adiciona a linha "  output: 'export'," logo após "const nextConfig = {"
+      # Isso não afeta seu arquivo local.
+      - name: Adicionar 'output: export' ao next.config.js
+        run: |
+          sed -i "/const nextConfig = {/a \ \ output: 'export'," next.config.js
+
+      - name: Build project
+        run: npm run build
 
       - name: Listar arquivos (para ver se 'out' está cheio)
         run: ls -R
