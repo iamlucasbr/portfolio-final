@@ -22,13 +22,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # --- A CORREÇÃO ESTÁ AQUI ---
+      # Forçamos o NODE_ENV=production para que o
+      # next.config.js ative o 'output: "export"'
       - name: Build project
-        run: npm run build
+        run: NODE_ENV=production npm run build
 
-      # --- NOVO PASSO DE DIAGNÓSTICO ---
-      # Este passo vai listar todos os arquivos no diretório
-      # para vermos se a pasta 'out' foi realmente criada.
-      - name: Listar arquivos após o build
+      - name: Listar arquivos após o build (para diagnóstico)
         run: ls -R
 
       - name: Deploy to FTP
