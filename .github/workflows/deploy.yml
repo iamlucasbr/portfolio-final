@@ -42,8 +42,7 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # --- O DIAGNÓSTICO CORRETO E FINAL ---
-      # Vamos listar APENAS o conteúdo da pasta 'out'
+      # O log deste passo provou que a pasta 'out' está cheia
       - name: Listar conteúdo da pasta 'out'
         run: ls -R out
 
@@ -54,5 +53,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
-          server-dir: ./public_html/
+          # --- CORREÇÃO FINAL ---
+          # Removendo o './' do caminho do servidor
+          server-dir: public_html/
           dangerous-clean-slate: true
