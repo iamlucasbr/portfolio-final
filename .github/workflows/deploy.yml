@@ -45,15 +45,16 @@ jobs:
       - name: Listar conteúdo da pasta 'out'
         run: ls -R out
 
-      # --- A SOLUÇÃO FINAL (DE VERDADE) ---
-      # 1. Voltamos para a action que EXISTE
-      # 2. Usamos a lógica que PULA os comandos bugados
+      # --- A MUDANÇA FINAL ---
+      # Trocando a action MENTIROSA pela action correta
       - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: SebastiaanKlippert/ftp-action@v2.1.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
-          server-dir: public_html/
-          delete-obsolete: false
+          
+          # 1. Pega o conteúdo da pasta 'out' (que está cheia)
+          localPath: out
+          # 2. Envia para a 'public_html' (que está vazia)
+          serverPath: public_html
