@@ -45,16 +45,17 @@ jobs:
       - name: Listar conteúdo da pasta 'out'
         run: ls -R out
 
-      # --- A MUDANÇA FINAL (DE VERDADE) ---
-      # Trocando a action MENTIROSA pela action correta (com a versão @v2)
+      # --- A SOLUÇÃO FINAL ---
+      # 1. Action que existe
+      # 2. Pasta local 'out' (que está cheia)
+      # 3. Pasta do servidor './' (que é a public_html)
+      # 4. Limpar a pasta './' (public_html) antes de enviar
       - name: Deploy to FTP
-        uses: SebastiaanKlippert/ftp-action@v2
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          
-          # 1. Pega o conteúdo da pasta 'out' (que está cheia)
-          localPath: out
-          # 2. Envia para a 'public_html' (que está vazia)
-          serverPath: public_html
+          local-dir: ./out/
+          server-dir: ./
+          dangerous-clean-slate: true
