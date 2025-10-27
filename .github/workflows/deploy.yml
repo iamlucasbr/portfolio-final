@@ -22,10 +22,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # --- CORRIGINDO O ERRO DE SINTAXE YAML ---
-      # Colocando o 'run' em uma única linha para consertar o parser
+      # --- A SOLUÇÃO DEFINITIVA ESTÁ AQUI ---
+      # Modifica o next.config.js SÓ NO SERVIDOR DE BUILD
+      # Adiciona a linha "  output: 'export'," logo após "const nextConfig = {"
       - name: Adicionar 'output: export' ao next.config.js
-        run: sed -i "/const nextConfig = {/a \ \ output: 'export'" next.config.js
+        run: |
+          sed -i "/const nextConfig = {/a \ \ output: 'export'" next.config.js
 
       - name: Build project
         run: npm run build
