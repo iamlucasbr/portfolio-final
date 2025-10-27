@@ -45,15 +45,15 @@ jobs:
       - name: Listar conteúdo da pasta 'out'
         run: ls -R out
 
-      # --- MUDANÇA TOTAL DO DEPLOY ---
-      # Trocando a action que eu digitei errado por uma que existe
+      # --- A SOLUÇÃO FINAL (DE VERDADE) ---
+      # 1. Voltamos para a action que EXISTE
+      # 2. Usamos a lógica que PULA os comandos bugados
       - name: Deploy to FTP
-        uses: wlixcc/lftp-action@v1.2.1
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          # 1. Pega o conteúdo da pasta 'out'
-          localDir: 'out/'
-          # 2. Envia para a 'public_html'
-          remoteDir: 'public_html/'
+          local-dir: ./out/
+          server-dir: public_html/
+          delete-obsolete: false
