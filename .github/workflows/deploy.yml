@@ -52,5 +52,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
-          server-dir: public_html/
-          # --- O COMANDO PROBLEMÁTICO FOI REMOVIDO ---
+          # --- A CORREÇÃO FINAL ESTÁ AQUI ---
+          # Envia para o diretório raiz (que é o public_html)
+          server-dir: ./
+          dangerous-clean-slate: true
