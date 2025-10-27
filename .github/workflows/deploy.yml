@@ -51,8 +51,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
-          # Voltamos ao 'public_html/' que o log anterior entendeu
-          server-dir: public_html/
-          # --- A MUDANÇA ESTÁ AQUI ---
-          # Removendo o clean-slate
+          # --- MUDANÇA DE CAMINHO ---
+          local-dir: out
+          server-dir: public_html
+          dangerous-clean-slate: true
