@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Profissional (iamlucasdev.com)
 
-## Getting Started
+Este repositório contém o código-fonte do meu portfolio pessoal e profissional, desenvolvido com Next.js (App Router) e Tailwind CSS.
 
-First, run the development server:
+## 🚀 Visão Geral do Projeto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+O objetivo principal deste projeto é apresentar minhas habilidades, experiências e projetos de forma moderna e responsiva.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Tecnologias Utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* **Framework:** Next.js 14 (Static Export)
+* **Linguagem:** TypeScript
+* **Estilização:** Tailwind CSS
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Configuração e Deploy (CI/CD)
 
-To learn more about Next.js, take a look at the following resources:
+O deploy deste projeto é totalmente automatizado através do GitHub Actions para o servidor Hostinger.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. Build Estático (Next.js)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Para que o Next.js funcione em um ambiente de hospedagem estática (como a Hostinger), ele é configurado para gerar todos os arquivos HTML, CSS e JavaScript na pasta `out/`.
 
-## Deploy on Vercel
+* **Arquivo de Configuração:** `next.config.js`
+    A linha `output: 'export'` é usada no servidor para garantir a exportação estática.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 2. Fluxo de Deploy (GitHub Actions)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+O arquivo de fluxo de trabalho (`.github/workflows/deploy.yml`) executa os seguintes passos após cada `git push` para a branch `main`:
+
+| Etapa | Ação | Propósito |
+| :--- | :--- | :--- |
+| **Build & Export** | `npm run build` | Cria todos os arquivos estáticos dentro da pasta `out/`. |
+| **Deploy** | `appleboy/ftp-deploy@v3` | Transfere os arquivos de `out/` para o servidor FTP. |
+
+### 3. Credenciais de FTP (Secrets)
+
+As credenciais do servidor são armazenadas de forma segura no GitHub Secrets (Configurações > Secrets > Actions):
+
+* `FTP_SERVER` (Host da Hostinger)
+* `FTP_USERNAME` (Usuário `u99790...`)
+* `FTP_PASSWORD`
+
+---
+
+## 💻 Uso Local
+
+Para rodar o projeto localmente:
+
+1.  Clone o repositório.
+2.  Instale as dependências: `npm install`
+3.  Inicie o servidor de desenvolvimento: `npm run dev`

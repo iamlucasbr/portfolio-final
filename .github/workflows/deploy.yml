@@ -45,11 +45,7 @@ jobs:
       - name: Listar conteúdo da pasta 'out'
         run: ls -R out
 
-      # --- A ÚNICA SOLUÇÃO LÓGICA ---
-      # 1. Action que existe
-      # 2. Pasta local 'out' (que está cheia)
-      # 3. Pasta do servidor './' (que é a public_html)
-      # 4. NÃO LIMPAR (bugado) e NÃO DELETAR (erro 550)
+      
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
