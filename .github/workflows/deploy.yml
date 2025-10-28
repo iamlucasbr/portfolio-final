@@ -53,9 +53,9 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           
-         
+          
           local_root: out/
-         
+          
           remote_root: ./
-         
+          
           delete: true
