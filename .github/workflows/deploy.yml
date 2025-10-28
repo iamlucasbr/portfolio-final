@@ -45,17 +45,17 @@ jobs:
       - name: Listar conteúdo da pasta 'out'
         run: ls -R out
 
-      
+      # --- A ÚNICA SOLUÇÃO LÓGICA ---
+      # 1. Action que existe
+      # 2. Pasta local 'out' (que está cheia)
+      # 3. Pasta do servidor './' (que é a public_html)
+      # 4. NÃO LIMPAR (bugado) e NÃO DELETAR (erro 550)
       - name: Deploy to FTP
-        uses: appleboy/ftp-deploy@v3
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          host: ${{ secrets.FTP_SERVER }}
+          server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          
-          
-          local_root: out/
-          
-          remote_root: ./
-          
-          delete: true
+          local-dir: ./out/
+          server-dir: ./
+          delete-obsolete: false
