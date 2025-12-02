@@ -41,7 +41,7 @@ const About = () => {
 
             <div className="mt-4">
               <a 
-                href="https://clicksales.com.br"
+                href="https://clicksalesagency.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-teal-400 font-medium hover:text-teal-300 hover:underline transition-all"
