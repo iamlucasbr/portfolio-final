@@ -1,4 +1,3 @@
-// components/Projects.tsx
 "use client";
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -7,7 +6,7 @@ import ParticleBackground from './ParticleBackground';
 
 const myProjects = [
   {
-    // 1. CLICK SALES (Dados Originais Mantidos)
+    //  CLICK SALES
     title: "Click Sales | Software House",
     description: "A Click Sales é uma Software House especialista na criação de sites, interfaces e sistemas, focado em performance e usabilidade para otimizar processos de negócio dos clientes.",
     tags: ["ReactJS", "Next.js", "Node.js", "PHP & Laravel", "React Native"],
@@ -20,7 +19,7 @@ const myProjects = [
     title: "LustPay | Automação Financeira",
     description: "Ecossistema de pagamentos e automação. Integração complexa entre APIs de pagamento, Webhooks e Bots de Telegram para gestão financeira em tempo real.",
     tags: ["Node.js", "Telegram API", "Gateway Payment", "Backend"],
-    imageUrl: "/lustpayments.png", 
+    imageUrl: "/lustpaymentss.png", 
     liveUrl: "https://lustpay.vercel.app/", 
     repoUrl: "https://github.com/iamlucasbr"
   },
