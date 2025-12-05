@@ -1,9 +1,8 @@
-// components/Skills.tsx
 "use client";
 import { motion } from 'framer-motion';
-import ParticleBackground from './ParticleBackground'; // Importando o componente da animação
+import ParticleBackground from './ParticleBackground'; 
 
-// Importando os ícones OFICIAIS da biblioteca react-icons
+
 import { FaReact, FaNodeJs, FaPhp, FaLaravel } from "react-icons/fa";
 import { TbBrandNextjs, TbBrandReactNative } from "react-icons/tb";
 

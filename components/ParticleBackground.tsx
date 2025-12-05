@@ -1,4 +1,3 @@
-// components/ParticleBackground.tsx
 "use client";
 import React, { useRef, useEffect } from 'react';
 
@@ -46,7 +45,7 @@ const ParticleBackground = () => {
       }
 
       update() {
-        // == CORRIGIR O BUG NAO ESQUECER!!
+        
         // Verificando se o canvas existe ANTES de tentar acessar as propriedades
         if (!canvas) return; 
         

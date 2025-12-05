@@ -1,11 +1,10 @@
-// components/Experience.tsx
 "use client";
 import { motion } from 'framer-motion';
-import ParticleBackground from './ParticleBackground'; // Importando o componente da animação
+import ParticleBackground from './ParticleBackground';
 
 const experiences = [
   {
-    company: "Click Sales Digital Solutions - CSDS",
+    company: "Click Sales Agency - CSA",
     role: "Software Developer",
     date: "abril de 2022 - Presente",
     technologies: ["ReactJS", "NextJS", "Node.js", "PHP", "Laravel", "React Native"],

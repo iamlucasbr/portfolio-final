@@ -1,8 +1,7 @@
-// components/Education.tsx
 "use client";
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import ParticleBackground from './ParticleBackground'; // Importando o componente da animação
+import ParticleBackground from './ParticleBackground';
 
 const educationHistory = [
   {
